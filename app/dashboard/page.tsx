@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 import { User } from '@supabase/supabase-js'
+import { useUserProfile } from '@/lib/hooks/useUserProfile'
 
 export default function DashboardPage() {
   const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const { profile, loading: profileLoading, error } = useUserProfile()
 
   useEffect(() => {
     let mounted = true
@@ -23,7 +25,7 @@ export default function DashboardPage() {
 
     getUser()
 
-    // subscribe to auth changes (opcional)
+    // Suscripción a cambios de sesión
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!session) router.push('/login')
     })
@@ -39,13 +41,32 @@ export default function DashboardPage() {
     router.push('/login')
   }
 
-  if (loading) return <div className="p-6">Cargando...</div>
+  if (loading || profileLoading) return <div className="p-6">Cargando...</div>
 
   return (
-    <main className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">Dashboard</h1>
-      <p className="mb-4">Bienvenido {user?.email}</p>
-      <button className="px-4 py-2 bg-gray-800 text-white rounded" onClick={handleSignOut}>Cerrar sesión</button>
+    <main className="p-6 space-y-4">
+      <h1 className="text-2xl font-semibold">Dashboard</h1>
+      <p>Bienvenido {user?.email}</p>
+
+      {error && <p className="text-red-500">Error: {error}</p>}
+
+      {profile && (
+        <section className="bg-gray-100 p-4 rounded-lg">
+          <h2 className="text-lg font-semibold mb-2">Perfil</h2>
+          <p><strong>Nombre:</strong> {profile.full_name ?? 'Sin definir'}</p>
+          <p><strong>Rol:</strong> {profile.role ?? 'user'}</p>
+          <p><strong>Suscripción:</strong> {profile.subscription_status ?? 'N/A'}</p>
+          {profile.age && <p><strong>Edad:</strong> {profile.age}</p>}
+        </section>
+      )}
+
+      <button
+        className="px-4 py-2 bg-gray-800 text-white rounded"
+        onClick={handleSignOut}
+      >
+        Cerrar sesión
+      </button>
     </main>
   )
 }
+
