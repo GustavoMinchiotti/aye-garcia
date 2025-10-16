@@ -3,6 +3,8 @@ module.exports = {
   content: [
     './app/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,jsx,ts,tsx}',
+    './pages/**/*.{js,jsx,ts,tsx}',
+    './lib/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
     extend: {
@@ -15,8 +17,8 @@ module.exports = {
         'contraste-4': '#626262',
         'base-oscura': '#E9E5DC',
         'base-media': '#F2FEFA',
-        'base-clara': '#FBFAF8',
-      },
+        'base-clara': '#FBFAF8'
+      }
     },
   },
   plugins: [],
