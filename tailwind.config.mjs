@@ -1,9 +1,9 @@
-// tailwind.config.mjs
 /** @type {import('tailwindcss').Config} */
 const config = {
   content: [
-    "./app/**/*.{js,jsx,ts,tsx}",
-    "./components/**/*.{js,jsx,ts,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./lib/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -14,9 +14,9 @@ const config = {
         contraste2: "#3B3B3B",
         contraste3: "#515151",
         contraste4: "#626262",
-        baseOscura: "#E9E5DC",
-        baseMedia: "#F2FEFA",
-        baseClara: "#FBFAF8",
+        baseOscura: "#ECE2D4",
+        baseMedia: "#F8F1E7",
+        baseClara: "#FCF8F3",
       },
     },
   },

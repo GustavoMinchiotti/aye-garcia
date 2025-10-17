@@ -1,0 +1,50 @@
+﻿📁 app
+    📁 admin
+        📁 components
+        📁 exercises
+            📄 page.tsx
+        📁 routines
+            📄 page.tsx
+        📄 layout.tsx
+        📄 page.tsx
+    📁 dashboard
+        📄 layout.tsx
+        📄 page.tsx
+    📁 login
+        📄 page.tsx
+    📁 register
+        📄 page.tsx
+    📄 favicon.ico
+    📄 globals.css
+    📄 layout.tsx
+    📄 page.tsx
+📁 components
+    📄 DashboardLayout.tsx
+    📄 Header.tsx
+    📄 NavBar.tsx
+    📄 ProfileForm.tsx
+    📄 Sidebar.tsx
+📁 lib
+    📁 hooks
+        📄 useUserProfile.ts
+    📁 supabase
+        📄 client.ts
+        📄 server.ts
+📁 public
+    📄 file.svg
+    📄 globe.svg
+    📄 next.svg
+    📄 vercel.svg
+    📄 window.svg
+📁 types
+    📄 user.ts
+📄 .env.local
+📄 eslint.config.mjs
+📄 estructura.txt
+📄 estructura_limpia.txt
+📄 next-env.d.ts
+📄 next.config.ts
+📄 package.json
+📄 postcss.config.js
+📄 tailwind.config.mjs
+📄 tsconfig.json

@@ -1,12 +1,7 @@
 /* app/globals.css */
 
-/* Tailwind base */
+/* Tailwind v4 base reset */
 @import "tailwindcss/preflight";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-/* luego puede continuar tu :root y el resto */
-
 
 /* --------------------------------------------------
    🎨 Paleta de colores global
@@ -20,9 +15,9 @@
   --color-contraste-3: #515151;
   --color-contraste-4: #626262;
 
-  --color-base-oscura: #E9E5DC;
-  --color-base-media: #F2FEFA;
-  --color-base-clara: #FBFAF8;
+  --color-base-oscura: #ECE2D4;
+  --color-base-media: #F8F1E7;
+  --color-base-clara: #FCF8F3;
 
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
@@ -30,7 +25,9 @@
 /* --------------------------------------------------
    🌍 Globales
 -------------------------------------------------- */
-html, body, #__next {
+html,
+body,
+#__next {
   height: 100%;
 }
 
@@ -49,43 +46,55 @@ body {
 /* --------------------------------------------------
    🧰 Utilidades personalizadas
 -------------------------------------------------- */
+
+/* Si querés seguir creando clases personalizadas, Tailwind v4 recomienda usar
+   las nuevas capas de CSS @layer, pero ahora solo existen `@layer utilities` */
 @layer utilities {
-  /* 🧱 Fondos base (camelCase y kebab-case) */
-  .bg-baseOscura, .bg-base-oscura {
+  /* Fondos base */
+  .bg-baseOscura,
+  .bg-base-oscura {
     background-color: var(--color-base-oscura);
   }
 
-  .bg-baseMedia, .bg-base-media {
+  .bg-baseMedia,
+  .bg-base-media {
     background-color: var(--color-base-media);
   }
 
-  .bg-baseClara, .bg-base-clara {
+  .bg-baseClara,
+  .bg-base-clara {
     background-color: var(--color-base-clara);
   }
 
-  /* 🎨 Acentos */
-  .bg-acento1, .bg-acento-1 {
+  /* Acentos */
+  .bg-acento1,
+  .bg-acento-1 {
     background-color: var(--color-acento-1);
   }
 
-  .bg-acento2, .bg-acento-2 {
+  .bg-acento2,
+  .bg-acento-2 {
     background-color: var(--color-acento-2);
   }
 
-  /* 🎨 Textos */
-  .text-contraste1, .text-contraste-1 {
+  /* Textos */
+  .text-contraste1,
+  .text-contraste-1 {
     color: var(--color-contraste-1);
   }
 
-  .text-contraste2, .text-contraste-2 {
+  .text-contraste2,
+  .text-contraste-2 {
     color: var(--color-contraste-2);
   }
 
-  .text-contraste3, .text-contraste-3 {
+  .text-contraste3,
+  .text-contraste-3 {
     color: var(--color-contraste-3);
   }
 
-  .text-contraste4, .text-contraste-4 {
+  .text-contraste4,
+  .text-contraste-4 {
     color: var(--color-contraste-4);
   }
 }
