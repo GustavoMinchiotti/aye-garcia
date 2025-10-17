@@ -55,7 +55,10 @@ export default function DashboardPage() {
         <section className="bg-gray-100 p-4 rounded-lg">
           <h2 className="text-lg font-semibold mb-2">Perfil</h2>
           <p>
-            <strong>Nombre:</strong> {profile.full_name ?? "Sin definir"}
+            <strong>Nombre:</strong>{" "}
+            {profile.first_name || profile.last_name
+              ? `${profile.first_name ?? ""} ${profile.last_name ?? ""}`.trim()
+              : "Sin definir"}
           </p>
           <p>
             <strong>Rol:</strong> {profile.role ?? "user"}
