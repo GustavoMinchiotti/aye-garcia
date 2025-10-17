@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
 import { useUserProfile } from "@/lib/hooks/useUserProfile";
 import ProfileForm from "@/components/ProfileForm";

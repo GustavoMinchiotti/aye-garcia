@@ -36,3 +36,21 @@ body {
 input, textarea, select, button {
   font-family: inherit;
 }
+
+/* Espaciado entre secciones */
+section {
+  margin-bottom: 2rem;
+}
+
+/* Títulos de secciones */
+h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Párrafos descriptivos */
+p {
+  color: #444;
+  margin-bottom: 0.5rem;
+}
