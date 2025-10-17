@@ -1,14 +1,35 @@
 /* app/globals.css */
 
-/* Tailwind v4 base layers */
+/* Tailwind base */
 @import "tailwindcss/preflight";
+@import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* Fuente y estilos globales */
+/* luego puede continuar tu :root y el resto */
+
+
+/* --------------------------------------------------
+   🎨 Paleta de colores global
+-------------------------------------------------- */
 :root {
+  --color-acento-1: #E69F45;
+  --color-acento-2: #F35530;
+
+  --color-contraste-1: #222222;
+  --color-contraste-2: #3B3B3B;
+  --color-contraste-3: #515151;
+  --color-contraste-4: #626262;
+
+  --color-base-oscura: #E9E5DC;
+  --color-base-media: #F2FEFA;
+  --color-base-clara: #FBFAF8;
+
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
+/* --------------------------------------------------
+   🌍 Globales
+-------------------------------------------------- */
 html, body, #__next {
   height: 100%;
 }
@@ -20,37 +41,51 @@ html {
 }
 
 body {
-  background-color: #FBFAF8; /* Base clara */
-  color: #222222; /* Contraste 1 */
+  background-color: var(--color-base-clara);
+  color: var(--color-contraste-1);
   margin: 0;
 }
 
-/* contenedor general */
-.container {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
+/* --------------------------------------------------
+   🧰 Utilidades personalizadas
+-------------------------------------------------- */
+@layer utilities {
+  /* 🧱 Fondos base (camelCase y kebab-case) */
+  .bg-baseOscura, .bg-base-oscura {
+    background-color: var(--color-base-oscura);
+  }
 
-/* fallback para inputs */
-input, textarea, select, button {
-  font-family: inherit;
-}
+  .bg-baseMedia, .bg-base-media {
+    background-color: var(--color-base-media);
+  }
 
-/* Espaciado entre secciones */
-section {
-  margin-bottom: 2rem;
-}
+  .bg-baseClara, .bg-base-clara {
+    background-color: var(--color-base-clara);
+  }
 
-/* Títulos de secciones */
-h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
+  /* 🎨 Acentos */
+  .bg-acento1, .bg-acento-1 {
+    background-color: var(--color-acento-1);
+  }
 
-/* Párrafos descriptivos */
-p {
-  color: #444;
-  margin-bottom: 0.5rem;
+  .bg-acento2, .bg-acento-2 {
+    background-color: var(--color-acento-2);
+  }
+
+  /* 🎨 Textos */
+  .text-contraste1, .text-contraste-1 {
+    color: var(--color-contraste-1);
+  }
+
+  .text-contraste2, .text-contraste-2 {
+    color: var(--color-contraste-2);
+  }
+
+  .text-contraste3, .text-contraste-3 {
+    color: var(--color-contraste-3);
+  }
+
+  .text-contraste4, .text-contraste-4 {
+    color: var(--color-contraste-4);
+  }
 }
