@@ -46,12 +46,6 @@ export function useUserProfile() {
           .select("*")
           .eq("id", user.id)
           .single();
-/*         console.log("Perfil ERROR ***** ->", {
-          userId: user.id,
-          data,
-          profileError,
-        }) */;
-
         if (profileError) {
           // Si no existe perfil, lo creamos vacío
           if (profileError.code === "PGRST116") {
