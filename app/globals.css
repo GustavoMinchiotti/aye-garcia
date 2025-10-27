@@ -2,6 +2,9 @@
 
 /* Tailwind v4 base reset */
 @import "tailwindcss/preflight";
+/*! DA ERROR PERO FUNCIONA */
+@tailwind utilities;
+@import "tailwindcss/utilities";
 
 /* --------------------------------------------------
    🎨 Paleta de colores global
@@ -28,7 +31,7 @@
 html,
 body,
 #__next {
-  height: 100%;
+  min-height: 100%;
 }
 
 html {
@@ -51,50 +54,55 @@ body {
    las nuevas capas de CSS @layer, pero ahora solo existen `@layer utilities` */
 @layer utilities {
   /* Fondos base */
-  .bg-baseOscura,
   .bg-base-oscura {
     background-color: var(--color-base-oscura);
   }
 
-  .bg-baseMedia,
   .bg-base-media {
     background-color: var(--color-base-media);
   }
 
-  .bg-baseClara,
   .bg-base-clara {
     background-color: var(--color-base-clara);
   }
 
   /* Acentos */
-  .bg-acento1,
   .bg-acento-1 {
     background-color: var(--color-acento-1);
   }
 
-  .bg-acento2,
   .bg-acento-2 {
     background-color: var(--color-acento-2);
   }
 
   /* Textos */
-  .text-contraste1,
   .text-contraste-1 {
     color: var(--color-contraste-1);
   }
 
-  .text-contraste2,
+
   .text-contraste-2 {
     color: var(--color-contraste-2);
   }
 
-  .text-contraste3,
   .text-contraste-3 {
     color: var(--color-contraste-3);
   }
-
-  .text-contraste4,
   .text-contraste-4 {
     color: var(--color-contraste-4);
   }
+}
+.prueba1{
+/*? exagerada prueba ///////////////////////////////////////////////////////////*/
+  background-color: #661301;
+  display: block;
+  justify-content: center;
+  border-radius: 5px;
+  max-width: 50%;
+  padding: 3px;
+  margin: 4px;
+  text-shadow: #ffffff;
+  font-weight: 500;
+  color: #F8F1E7;
+
 }

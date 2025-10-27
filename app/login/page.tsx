@@ -35,7 +35,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex items-center justify-center min-h-screen bg-[#F2FEFA] text-[#222222]">
+    <main className="flex items-center justify-center min-h-screen bg-base-oscura text-[#222222]">
       <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-sm">
         <h1 className="text-2xl font-semibold mb-6 text-center">
           {isRegister ? 'Crear cuenta' : 'Iniciar sesión'}
