@@ -1,10 +1,7 @@
 /* app/globals.css */
 
-/* Tailwind v4 base reset */
-@import "tailwindcss/preflight";
-/*! DA ERROR PERO FUNCIONA */
-@tailwind utilities;
-@import "tailwindcss/utilities";
+/* Tailwind CSS imports */
+@import "tailwindcss";
 
 /* --------------------------------------------------
    🎨 Paleta de colores global
