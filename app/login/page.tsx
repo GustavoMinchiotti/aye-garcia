@@ -67,7 +67,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 bg-[#E69F45] text-white font-semibold rounded-lg hover:bg-[#F35530] transition-colors"
+            className="w-full py-2 bg-[#E69F45] text-white font-semibold rounded-lg hover:bg-[#F35530] hover:text-[#ffffff] hover:font-bold transition-colors"
           >
             {loading
               ? 'Cargando...'

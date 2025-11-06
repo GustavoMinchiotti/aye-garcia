@@ -49,48 +49,66 @@ body {
 
 /* Si querés seguir creando clases personalizadas, Tailwind v4 recomienda usar
    las nuevas capas de CSS @layer, pero ahora solo existen `@layer utilities` */
+
+/*?       Nota: Las claves de color personalizadas usan camelCase para asegurar compatibilidad.     */
+/*?       Tailwind permite usar nombres con guiones entre comillas (ej: "acento-2"),                */
+/*?       pero esas keys no se resuelven correctamente en tiempo de ejecución y las                 */
+/*?       clases generadas no son reconocidas por el navegador.                                     */
+/*?       Para mantener consistencia con las utilidades definidas en globals.css                    */
+/*?       y evitar fallas de renderizado, todos los nombres se definen en camelCase.                */
+
 @layer utilities {
+
   /* Fondos base */
-  .bg-base-oscura {
+  .bg-baseOscura {
     background-color: var(--color-base-oscura);
   }
 
-  .bg-base-media {
+  .bg-baseMedia {
     background-color: var(--color-base-media);
   }
 
-  .bg-base-clara {
+  .bg-baseClara {
     background-color: var(--color-base-clara);
   }
 
-  /* Acentos */
-  .bg-acento-1 {
+  /*todo Acentos se pueden usar en base o texto */
+  .bg-acento1 {
     background-color: var(--color-acento-1);
   }
 
-  .bg-acento-2 {
+  .bg-acento2 {
     background-color: var(--color-acento-2);
   }
 
+  .text-acento1 {
+    color: var(--color-acento-1);
+  }
+
+  .text-acento2 {
+    color: var(--color-acento-2);
+  }
+
   /* Textos */
-  .text-contraste-1 {
+  .text-contraste1 {
     color: var(--color-contraste-1);
   }
 
-
-  .text-contraste-2 {
+  .text-contraste2 {
     color: var(--color-contraste-2);
   }
 
-  .text-contraste-3 {
+  .text-contraste3 {
     color: var(--color-contraste-3);
   }
-  .text-contraste-4 {
+
+  .text-contraste4 {
     color: var(--color-contraste-4);
   }
 }
-.prueba1{
-/*? exagerada prueba ///////////////////////////////////////////////////////////*/
+
+.prueba1 {
+  /*? exagerada prueba ///////////////////////////////////////////////////////////*/
   background-color: #661301;
   display: block;
   justify-content: center;

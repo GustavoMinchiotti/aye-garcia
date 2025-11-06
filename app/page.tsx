@@ -11,7 +11,7 @@ export default function Home() {
         Entrená, cuidate y viví mejor con nuestra comunidad.
       </p>
 
-<div className="prueba1 bg-red-200 p-10 m-10 rounded-2xl">
+<div className="prueba1 p-10 m-10 rounded-2xl"> {/** Lo que renderiza aca es directo css puro de globals porque lo sobrescribe */}
   test
 </div>
 
@@ -22,7 +22,7 @@ export default function Home() {
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Link
           href="/login"
-          className="w-full sm:w-auto px-6 py-3 bg-acento-1 text-base-clara rounded-lg font-medium hover:bg-acento-2 transition"
+          className="w-full sm:w-auto px-6 py-3 bg-acento1 text-base-clara rounded-lg font-medium hover:bg-acento-2 transition"
         >
           Entrar
         </Link>

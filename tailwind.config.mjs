@@ -24,3 +24,12 @@ const config = {
 };
 
 export default config;
+
+/*
+ Nota: Las claves de color personalizadas usan camelCase para asegurar compatibilidad.
+ Tailwind permite usar nombres con guiones entre comillas (ej: "acento-2"),
+ pero esas keys no se resuelven correctamente en tiempo de ejecución y las
+ clases generadas no son reconocidas por el navegador.
+ Para mantener consistencia con las utilidades definidas en globals.css
+ y evitar fallas de renderizado, todos los nombres se definen en camelCase.
+*/
