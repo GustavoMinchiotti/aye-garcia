@@ -225,7 +225,7 @@ export default function TailwindTestPage() {
           <h2 className="text-2xl font-semibold mb-4 text-contraste1">
             Layout & Spacing
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"> 
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Crea un layout responsivo con CSS Grid: 1 columna en móvil, 2 en pantallas medianas y 
             4 en grandes, con espacio uniforme entre elementos. */}
 
@@ -245,7 +245,7 @@ export default function TailwindTestPage() {
         </section>
 
         {/* Forms */}
-        <section className="bg-white p-6 rounded-lg shadow-lg">
+        <section className="bg-baseOscura p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold mb-4 text-contraste1">
             Form Elements
           </h2>
@@ -264,11 +264,17 @@ export default function TailwindTestPage() {
               <label className="block text-sm font-medium text-contraste2 mb-2">
                 Select Dropdown
               </label>
-              <select className="w-full px-4 py-2 border border-baseOscura rounded-lg focus:ring-2 focus:ring-acento1 focus:border-transparent outline-none transition-all duration-200">
-                <option>Option 1</option>
+              <select
+                className="w-full px-4 py-2 border border-(--color-acento-2) rounded-lg focus:ring-2 focus:ring-(--color-acento-1) focus:border-(--color-contraste-4) 
+              outline-solid outline-(--color-base-clara) focus:outline-2 focus:outline-(--color-acento-1) outline-offset-2 transition-all duration-200"> 
+              
+              {/* css de las opciones ******    INCORPORAR RADIX ACA   ************************************************************/}
+                <option className="bg-baseOscura p-6 rounded-lg shadow-lg hover:bg-(--color-acento-2)" 
+                >Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
               </select>
+
             </div>
             <div>
               <label className="block text-sm font-medium text-contraste2 mb-2">

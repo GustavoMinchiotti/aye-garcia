@@ -1,0 +1,85 @@
+/* Reset básico */
+button {
+  all: unset;
+}
+
+/* Trigger del select */
+.SelectTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  height: 40px;
+  gap: 8px;
+  background-color: var(--color-base-clara);
+  color: var(--color-contraste2);
+  border: 1px solid var(--color-base-oscura);
+  transition: all 0.2s ease;
+}
+.SelectTrigger:hover {
+  background-color: var(--color-base-media);
+}
+.SelectTrigger:focus {
+  box-shadow: 0 0 0 2px var(--color-acento-1);
+}
+
+/* Icono desplegable */
+.SelectIcon {
+  color: var(--color-contraste3);
+}
+
+/* Contenedor de opciones */
+.SelectContent {
+  background-color: var(--color-base-clara);
+  border-radius: 0.5rem;
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Viewport interno */
+.SelectViewport {
+  padding: 4px;
+}
+
+/* Ítems */
+.SelectItem {
+  font-size: 0.9rem;
+  color: var(--color-contraste2);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 30px 0 25px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+.SelectItem[data-highlighted] {
+  background-color: var(--color-acento-1);
+  color: var(--color-base-clara);
+}
+
+/* Indicador (✔️) */
+.SelectItemIndicator {
+  position: absolute;
+  left: 0;
+  width: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-acento-2);
+}
+
+/* Botones de scroll (arriba y abajo) */
+.SelectScrollButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  background-color: var(--color-base-media);
+  color: var(--color-contraste3);
+  cursor: default;
+}
