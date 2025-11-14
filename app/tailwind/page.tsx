@@ -1,5 +1,7 @@
 "use client";
 
+import SelectCustom from "@/components/ui/SelectCustom"; // ⬅️ trae el select full customizado
+
 export default function TailwindTestPage() {
   return (
     <div className="min-h-screen bg-baseClara">
@@ -22,7 +24,7 @@ export default function TailwindTestPage() {
 
       <div className="container mx-auto p-6 space-y-8">
         {/* Custom Color Palette */}
-        <section className="bg-baseClara p-6 rounded-lg shadow-lg">
+        <section className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold mb-4 text-contraste1">
             Paleta de Colores
           </h2>
@@ -157,6 +159,37 @@ export default function TailwindTestPage() {
              *       bg-[var(--color-acento-1)] → bg-(--color-acento-1)
              *       (misma funcionalidad, distinto parsing)
              */}
+
+            {/*   // ! IMPORTANTE: Problema con Radix UI y las variantes de Tailwind
+                  //
+                  // Al importar el componente <SelectCustom> basado en Radix UI, los botones dejaron
+                  // de reaccionar a hover/scale/transition. Esto se debe a que Radix inyecta estilos
+                  // por defecto (desde @radix-ui/themes y primitives) que aplican:
+                  //
+                  //   * `button { all: unset; }`
+                  //   * Normalización agresiva sobre :focus, :hover y propiedades interactivas
+                  //   * Resets globales que tienen mayor especificidad que las utilidades de Tailwind
+                  //
+                  // Estos resets afectan a **TODOS los botones de la página**, incluso los que NO
+                  // pertenecen al Select, dejando sin efecto:
+                  //
+                  //   - hover:bg-*
+                  //   - hover:scale-*
+                  //   - transition-*
+                  //   - focus:ring-*
+                  //
+                  // 💡 SOLUCIÓN:
+                  // Se deshabilitó temporalmente la importación:
+                  //
+                  //     ? import SelectCustom from "@/components/ui/SelectCustom";
+                  //
+                  // Con esto, desaparecen los resets globales de Radix y los botones vuelven a
+                  // funcionar con su sintaxis tailwind normal.
+                  //
+                  // ✔️ Confirmado: el problema no era el JSX ni la sintaxis de clases, sino los
+                  //    estilos globales que Radix inyecta al cargar el componente.
+                  //``` */}
+
             <button className="bg-(--color-acento-1) hover:bg-(--color-acento-2) hover:text-(--color-base-oscura) px-6 py-3 rounded-lg font-semibold transition-all duration-500 transform hover:scale-105">
               Primary Button
             </button>
@@ -179,7 +212,7 @@ export default function TailwindTestPage() {
           </div>
         </section>
 
-        {/* Cards */}
+        {/* ===================================== Cards ============================================================================= */}
         <section className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold mb-4 text-contraste1">Cards</h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -266,16 +299,33 @@ export default function TailwindTestPage() {
               </label>
               <select
                 className="w-full px-4 py-2 border border-(--color-acento-2) rounded-lg focus:ring-2 focus:ring-(--color-acento-1) focus:border-(--color-contraste-4) 
-              outline-solid outline-(--color-base-clara) focus:outline-2 focus:outline-(--color-acento-1) outline-offset-2 transition-all duration-200"> 
-              
-              {/* css de las opciones ******    INCORPORAR RADIX ACA   ************************************************************/}
-                <option className="bg-baseOscura p-6 rounded-lg shadow-lg hover:bg-(--color-acento-2)" 
-                >Option 1</option>
+              outline-solid outline-(--color-base-clara) focus:outline-2 focus:outline-(--color-acento-1) outline-offset-2 transition-all duration-200"
+              >
+                <option className="bg-baseOscura p-6 rounded-lg shadow-lg hover:bg-(--color-acento-2)">
+                  Option 1
+                </option>
                 <option>Option 2</option>
                 <option>Option 3</option>
               </select>
-
             </div>
+            {/* css de las opciones ******    INCORPORAR RADIX ACA   ************************************************************/}
+
+            {/* Select con Radix (personalizado) */}
+            <div>
+              <label className="block text-sm font-medium text-contraste2 mb-2">
+                Select Radix (con estilos Aye)
+              </label>
+              <SelectCustom
+                options={[
+                  { value: "opcion1", label: "Opción 1" },
+                  { value: "opcion2", label: "Opción 2" },
+                  { value: "opcion3", label: "Opción 3" },
+                ]}
+                placeholder="Elegí una opción"
+                onValueChange={(v: string) => console.log("Seleccionaste:", v)}
+              />
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-contraste2 mb-2">
                 Textarea

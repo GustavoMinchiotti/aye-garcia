@@ -1,7 +1,7 @@
 /* Reset básico */
-button {
+/* button {
   all: unset;
-}
+} */
 
 /* Trigger del select */
 .SelectTrigger {
@@ -9,33 +9,39 @@ button {
   align-items: center;
   justify-content: space-between;
   border-radius: 0.5rem;
+  box-sizing: border-box;  /* 🔥 evita que se pase del contenedor */
+  width: 100%;
+  height: auto;  /* 🔥 esta línea hace que sea relativo */
+  min-height: auto;  /* 🔥 elimina restricciones */
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-  height: 40px;
   gap: 8px;
   background-color: var(--color-base-clara);
-  color: var(--color-contraste2);
+  color: var(--color-contraste-2);
   border: 1px solid var(--color-base-oscura);
   transition: all 0.2s ease;
 }
+
 .SelectTrigger:hover {
   background-color: var(--color-base-media);
 }
+
 .SelectTrigger:focus {
   box-shadow: 0 0 0 2px var(--color-acento-1);
 }
 
 /* Icono desplegable */
 .SelectIcon {
-  color: var(--color-contraste3);
+  color: var(--color-contraste-3);
 }
 
 /* Contenedor de opciones */
 .SelectContent {
   background-color: var(--color-base-clara);
   border-radius: 0.5rem;
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.6);
   overflow: hidden;
+  width: var(--radix-select-trigger-width);/* 🔥 Nueva línea para igualar el ancho */
 }
 
 /* Viewport interno */
@@ -46,7 +52,9 @@ button {
 /* Ítems */
 .SelectItem {
   font-size: 0.9rem;
-  color: var(--color-contraste2);
+  color: var(--color-contraste-4);
+  /*color de la letra de las opciones desplegadas sin seleccionar*/
+  /* color: #ca0000; */
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -57,8 +65,10 @@ button {
   user-select: none;
   transition: background-color 0.2s ease;
 }
+
 .SelectItem[data-highlighted] {
   background-color: var(--color-acento-1);
+  /* fondo del select cuando esta seleccionado */
   color: var(--color-base-clara);
 }
 
@@ -71,6 +81,7 @@ button {
   align-items: center;
   justify-content: center;
   color: var(--color-acento-2);
+  /* color: blueviolet; */
 }
 
 /* Botones de scroll (arriba y abajo) */
@@ -80,6 +91,7 @@ button {
   justify-content: center;
   height: 25px;
   background-color: var(--color-base-media);
-  color: var(--color-contraste3);
+  /* color: var(--color-contraste-3); */
+  color: blueviolet;
   cursor: default;
 }
