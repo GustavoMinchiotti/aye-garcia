@@ -12,13 +12,24 @@
         📄 page.tsx
     📁 login
         📄 page.tsx
+    📁 radix
+        📄 page.tsx
     📁 register
+        📄 page.tsx
+    📁 tailwind
         📄 page.tsx
     📄 favicon.ico
     📄 globals.css
     📄 layout.tsx
     📄 page.tsx
 📁 components
+    📁 ui
+        📄 button.tsx
+        📄 card.tsx
+        📄 input.tsx
+        📄 modal.tsx
+        📄 select-styles.css
+        📄 SelectCustom.tsx
     📄 DashboardLayout.tsx
     📄 Header.tsx
     📄 NavBar.tsx
@@ -26,10 +37,12 @@
     📄 Sidebar.tsx
 📁 lib
     📁 hooks
+        📄 useAdmin.ts
         📄 useUserProfile.ts
     📁 supabase
         📄 client.ts
         📄 server.ts
+    📄 utils.ts
 📁 public
     📄 file.svg
     📄 globe.svg
@@ -40,11 +53,10 @@
     📄 user.ts
 📄 .env.local
 📄 eslint.config.mjs
-📄 estructura.txt
 📄 estructura_limpia.txt
 📄 next-env.d.ts
 📄 next.config.ts
 📄 package.json
-📄 postcss.config.js
+📄 postcss.config.mjs
 📄 tailwind.config.mjs
 📄 tsconfig.json

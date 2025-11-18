@@ -8,23 +8,12 @@ const FormElements: React.FC = () => {
   return (
     <>
       {/* Forms */}
-      <section className="bg-baseOscura p-6 rounded-lg shadow-lg">
+      <section className="bg-baseOscura p-6 rounded-lg shadow-lg w-3xl">
         <h2 className="text-2xl font-semibold mb-4 text-contraste1">
           Form Elements
         </h2>
-
-        <div className="space-y-4 max-w-md">
-          {/* Input */}
-          <div>
-            <label className="block text-sm font-medium text-contraste2 mb-2">
-              Text Input
-            </label>
-            <input
-              type="text"
-              placeholder="Enter text here"
-              className="w-full px-4 py-2 border border-baseOscura rounded-lg focus:ring-2 focus:ring-acento1 focus:border-transparent outline-none transition-all duration-200"
-            />
-          </div>
+        <div className="space-y-4 max-w-3xl">
+         
 
           {/* Select con Radix (personalizado) */}
           <div>
@@ -57,7 +46,7 @@ const FormElements: React.FC = () => {
           {/* Select con paleta principal */}
           <div>
             <label className="block text-sm font-medium text-contraste2 mb-2">
-              Select con paleta MAREVOX
+              Select con paleta 
             </label>
             <select className="w-full px-4 py-2 border border-(--color-acento-1) rounded-lg bg-baseMedia text-contraste1 focus:ring-2 focus:ring-(--color-acento-2) focus:border-transparent transition-all duration-200 shadow-sm hover:shadow-md">
               <option className="bg-baseOscura text-baseClara hover:bg-(--color-acento-1)">
@@ -80,17 +69,7 @@ const FormElements: React.FC = () => {
             </select>
           </div>
 
-          {/* Textarea */}
-          <div>
-            <label className="block text-sm font-medium text-contraste2 mb-2">
-              Textarea
-            </label>
-            <textarea
-              placeholder="Enter your message"
-              rows={4}
-              className="w-full px-4 py-2 border border-baseOscura rounded-lg focus:ring-2 focus:ring-acento1 focus:border-transparent outline-none transition-all duration-200 resize-none"
-            ></textarea>
-          </div>
+
         </div>
       </section>
     </>

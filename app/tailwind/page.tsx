@@ -6,11 +6,11 @@ export default function TailwindTestPage() {
   return (
     <div className="min-h-screen bg-baseClara">
       {/* Header */}
-      <header className="bg-baseMedia rounded-lg text-contraste1 p-6">
+      <header className="bg-baseMedia rounded-lg text-contraste2 p-6">
         <h1 className="text-4xl font-bold text-center">
           Tailwind CSS Test Page
         </h1>
-        <p className="text-center mt-2 text-contraste3">
+        <p className="text-center mt-2 text-contraste4">
           Testing all Tailwind features and custom colors
         </p>
       </header>
@@ -97,8 +97,8 @@ export default function TailwindTestPage() {
         </section>
 
         {/* Typography */}
-        <section className="bg-baseClara p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-contraste1">
+        <section className="bg-baseMedia p-6 rounded-lg shadow-lg">
+          <h2 className="text-2xl font-semibold mb-4 text-contraste3">
             Typography
           </h2>
 
@@ -198,14 +198,14 @@ export default function TailwindTestPage() {
             </button>
             <button
               onClick={() => console.log("Outline button pressed")}
-              className="bg-transparent border-2 border-(--color-contraste-1) text-(--color-contraste-4) hover:bg-(--color-acento-1) hover:text-(--color-contraste-1) px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105"
+              className="bg-transparent border-2 border-(--color-acento-1) text-(--color-contraste-4) hover:bg-(--color-acento-1) hover:text-(--color-contraste-1) px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105"
             >
               Outline Button
             </button>
 
             <button
               onClick={() => console.log("Dark button pressed")}
-              className="bg-(--color-base-clara) hover:bg-(--color-base-oscura) text-(--color-contraste-2) hover:text-(--color-contraste-1) px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105"
+              className="bg-(--color-base-clara) hover:bg-(--color-base-oscura) text-(--color-contraste-2) hover:text-(--color-acento-2) px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105"
             >
               Dark Button
             </button>
@@ -216,7 +216,8 @@ export default function TailwindTestPage() {
         <section className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold mb-4 text-contraste1">Cards</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-baseClara border border-baseOscura rounded-lg p-6 hover:shadow-lg transition-shadow duration-200">
+
+            <div className="bg-baseMedia border border-(--color-base-oscura) rounded-lg p-6 hover:shadow-lg transition-shadow duration-200">
               <div className="w-12 h-12 bg-acento1 rounded-full mb-4"></div>
               <h3 className="text-xl font-semibold text-contraste1 mb-2">
                 Card Title 1
@@ -226,9 +227,9 @@ export default function TailwindTestPage() {
                 palette.
               </p>
             </div>
-            <div className="bg-baseClara border border-baseOscura rounded-lg p-6 hover:shadow-lg transition-shadow duration-200">
+            <div className="bg-(--color-base-oscura) border border-(--color-contraste-1) rounded-lg p-6 hover:shadow-lg transition-shadow duration-200">
               <div className="w-12 h-12 bg-acento2 rounded-full mb-4"></div>
-              <h3 className="text-xl font-semibold text-contraste1 mb-2">
+              <h3 className="text-xl font-semibold text-contraste4 mb-2">
                 Card Title 2
               </h3>
               <p className="text-contraste3">
@@ -241,7 +242,7 @@ export default function TailwindTestPage() {
             // ya que Tailwind no resuelve colores personalizados en bordes sin esta sintaxis.
             */}
 
-            <div className="bg-baseClara border-4 border-(--color-contraste-4) rounded-lg p-6 hover:shadow-lg transition-shadow duration-200">
+            <div className="bg-baseClara border-2 border-(--color-contraste-4) rounded-lg p-6 hover:shadow-lg transition-shadow duration-200">
               <div className="w-12 h-12 bg-baseOscura rounded-full mb-4"></div>
               <h3 className="text-xl font-semibold text-contraste1 mb-2">
                 Card Title 3
@@ -255,14 +256,14 @@ export default function TailwindTestPage() {
 
         {/* Layout & Spacing */}
         <section className="bg-baseOscura p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-contraste1">
+          <h2 className="text-2xl font-semibold mb-4 text-(--color-contraste-1)">
             Layout & Spacing
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Crea un layout responsivo con CSS Grid: 1 columna en móvil, 2 en pantallas medianas y 
-            4 en grandes, con espacio uniforme entre elementos. */}
+            4 en grandes, con espacio uniforme entre elementos. acá bg- funciona con dos sintaxis para los acentos */}
 
-            <div className="bg-acento1 p-4 rounded text-(--color-base-clara) text-center font-semibold shadow-xl">
+            <div className="bg-(--color-acento-1) p-4 rounded text-(--color-base-clara) text-center font-semibold shadow-xl">
               Grid Item 1
             </div>
             <div className="bg-acento2 p-4 rounded text-(--color-base-clara) text-center font-semibold">
@@ -279,40 +280,26 @@ export default function TailwindTestPage() {
 
         {/* Forms */}
         <section className="bg-baseOscura p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-contraste1">
+          <h2 className="text-2xl font-semibold mb-4 text-(--color-contraste-2)">
             Form Elements
           </h2>
           <div className="space-y-4 max-w-md">
             <div>
-              <label className="block text-sm font-medium text-contraste2 mb-2">
+              <label className="block text-sm font-medium text-(--color-contraste-3) mb-2">
                 Text Input
               </label>
               <input
                 type="text"
                 placeholder="Enter text here"
-                className="w-full px-4 py-2 border border-baseOscura rounded-lg focus:ring-2 focus:ring-acento1 focus:border-transparent outline-none transition-all duration-200"
+                className="w-full px-4 py-2 border border-(--color-acento-1) rounded-lg text-(--color-contraste-3) focus:ring-2 focus:ring-(--color-acento-2) focus:border-transparent outline-none transition-all duration-200"
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-contraste2 mb-2">
-                Select Dropdown
-              </label>
-              <select
-                className="w-full px-4 py-2 border border-(--color-acento-2) rounded-lg focus:ring-2 focus:ring-(--color-acento-1) focus:border-(--color-contraste-4) 
-              outline-solid outline-(--color-base-clara) focus:outline-2 focus:outline-(--color-acento-1) outline-offset-2 transition-all duration-200"
-              >
-                <option className="bg-baseOscura p-6 rounded-lg shadow-lg hover:bg-(--color-acento-2)">
-                  Option 1
-                </option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-              </select>
-            </div>
-            {/* css de las opciones ******    INCORPORAR RADIX ACA   ************************************************************/}
+           
+            {/* css de las opciones ******    RADIX ACA   ************************************************************/}
 
             {/* Select con Radix (personalizado) */}
             <div>
-              <label className="block text-sm font-medium text-contraste2 mb-2">
+              <label className="block text-sm font-medium text-(--color-contraste-1) mb-2">
                 Select Radix (con estilos Aye)
               </label>
               <SelectCustom
@@ -327,13 +314,13 @@ export default function TailwindTestPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-contraste2 mb-2">
+              <label className="block text-sm font-medium text-(--color-contraste-4) mb-2">
                 Textarea
               </label>
               <textarea
                 placeholder="Enter your message"
                 rows={4}
-                className="w-full px-4 py-2 border border-baseOscura rounded-lg focus:ring-2 focus:ring-acento1 focus:border-transparent outline-none transition-all duration-200 resize-none"
+                className="w-full px-4 py-2 border border-(--color-contraste-3) rounded-lg text-(--color-contraste-3) focus:ring-2 focus:ring-(--color-acento-2) focus:border-transparent outline-none transition-all duration-200 resize-none"
               ></textarea>
             </div>
           </div>
