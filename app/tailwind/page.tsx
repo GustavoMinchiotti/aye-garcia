@@ -216,7 +216,6 @@ export default function TailwindTestPage() {
         <section className="bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold mb-4 text-contraste1">Cards</h2>
           <div className="grid md:grid-cols-3 gap-6">
-
             <div className="bg-baseMedia border border-(--color-base-oscura) rounded-lg p-6 hover:shadow-lg transition-shadow duration-200">
               <div className="w-12 h-12 bg-acento1 rounded-full mb-4"></div>
               <h3 className="text-xl font-semibold text-contraste1 mb-2">
@@ -278,7 +277,7 @@ export default function TailwindTestPage() {
           </div>
         </section>
 
-        {/* Forms */}
+        {/* =====================================================================    Forms =======================================================================*/}
         <section className="bg-baseOscura p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold mb-4 text-(--color-contraste-2)">
             Form Elements
@@ -291,11 +290,12 @@ export default function TailwindTestPage() {
               <input
                 type="text"
                 placeholder="Enter text here"
-                className="w-full px-4 py-2 border border-(--color-acento-1) rounded-lg text-(--color-contraste-3) focus:ring-2 focus:ring-(--color-acento-2) focus:border-transparent outline-none transition-all duration-200"
+                className="w-full px-4 py-2 bg-(--color-base-clara) border border-(--color-acento-1) rounded-lg text-(--color-contraste-3) 
+                focus:ring-2 focus:ring-(--color-acento-2) focus:border-transparent outline-none transition-all duration-200"
               />
             </div>
-           
-            {/* css de las opciones ******    RADIX ACA   ************************************************************/}
+
+            {/* ===============================css de las opciones ******    RADIX ACA   ************************************************************/}
 
             {/* Select con Radix (personalizado) */}
             <div>

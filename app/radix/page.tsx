@@ -43,33 +43,6 @@ const FormElements: React.FC = () => {
             </select>
           </div>
 
-          {/* Select con paleta principal */}
-          <div>
-            <label className="block text-sm font-medium text-contraste2 mb-2">
-              Select con paleta 
-            </label>
-            <select className="w-full px-4 py-2 border border-(--color-acento-1) rounded-lg bg-baseMedia text-contraste1 focus:ring-2 focus:ring-(--color-acento-2) focus:border-transparent transition-all duration-200 shadow-sm hover:shadow-md">
-              <option className="bg-baseOscura text-baseClara hover:bg-(--color-acento-1)">
-                Opción 1
-              </option>
-              <option>Opción 2</option>
-              <option>Opción 3</option>
-            </select>
-          </div>
-
-          {/* Select minimalista */}
-          <div>
-            <label className="block text-sm font-medium text-contraste2 mb-2">
-              Select minimalista
-            </label>
-            <select className="w-full px-3 py-2 border border-(--color-contraste-4) rounded-md bg-transparent text-contraste3 focus:border-(--color-acento-1) focus:ring-0 transition-colors duration-200">
-              <option>Opción 1</option>
-              <option>Opción 2</option>
-              <option>Opción 3</option>
-            </select>
-          </div>
-
-
         </div>
       </section>
     </>

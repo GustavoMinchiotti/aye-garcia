@@ -1,4 +1,4 @@
-/* app/globals.css */
+/*! app/globals.css */
 
 /* Tailwind CSS imports */
 @import "tailwindcss";
@@ -119,5 +119,14 @@ body {
   text-shadow: #ffffff;
   font-weight: 500;
   color: #F8F1E7;
+}
 
+/* Desactivar autofill azul de Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  background-color: var(--color-base-clara) !important;
+  color: var(--color-contraste-3) !important;
+  -webkit-text-fill-color: var(--color-contraste-3) !important;
+  transition: background-color 9999s ease-in-out 0s;
 }

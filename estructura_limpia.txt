@@ -2,8 +2,17 @@
     📁 admin
         📁 components
         📁 exercises
+            📁 new
+                📄 page.tsx
+            📁 [id]
             📄 page.tsx
         📁 routines
+            📁 new
+                📄 page.tsx
+            📁 [id]
+            📄 page.tsx
+        📁 users
+            📁 [id]
             📄 page.tsx
         📄 layout.tsx
         📄 page.tsx
@@ -47,6 +56,8 @@
     📄 file.svg
     📄 globe.svg
     📄 next.svg
+    📄 portada-desktop.jpg
+    📄 portada-mobile.jpg
     📄 vercel.svg
     📄 window.svg
 📁 types
@@ -60,3 +71,4 @@
 📄 postcss.config.mjs
 📄 tailwind.config.mjs
 📄 tsconfig.json
+📄 Z-Documentación.md

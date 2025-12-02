@@ -1,4 +1,3 @@
-
 # Guía Oficial de Estilos — Tailwind + CSS Variables
 
 Este documento define **toda la sintaxis oficial** utilizada en el proyecto, basada en el archivo de prueba `tailwind.tsx` y normalizada para que el sistema UI sea consistente, escalable y fácil de mantener.
@@ -222,9 +221,9 @@ hover:bg-(--color-acento-2) transition
 
 ### Variantes sugeridas
 
-- Primario  
-- Secundario  
-- Fantasma  
+- Primario
+- Secundario
+- Fantasma
 - Deshabilitado
 
 Se documentarán cuando integres tu sistema de botones final.
@@ -247,9 +246,9 @@ focus:border-(--color-acento-1)
 
 Siempre preferir:
 
-- `section` para grupos de contenido  
-- `article` para elementos autónomos  
-- `header` / `footer` según corresponda  
+- `section` para grupos de contenido
+- `article` para elementos autónomos
+- `header` / `footer` según corresponda
 - `main` en layouts principales
 
 Evitar `<div>` innecesarios.
@@ -310,7 +309,12 @@ Y los estilos están en:
 import * as Select from "@radix-ui/react-select";
 import "./select-styles.css";
 
-export default function SelectCustom({ label, value, onValueChange, options = [] }) {
+export default function SelectCustom({
+  label,
+  value,
+  onValueChange,
+  options = [],
+}) {
   return (
     <div className="flex flex-col gap-1 w-full">
       {label && <label className="text-sm text-gray-300">{label}</label>}
@@ -408,3 +412,132 @@ Ejemplo práctico:
 - No usar colores hex/rgba directamente en el CSS del select; siempre usar variables para mantener theming.
 
 Fin de la sección 14.
+
+### 📝 Notas sobre scroll innecesario
+
+Este componente _no_ genera scroll vertical porque no introduce padding o márgenes
+verticales excesivos.
+
+- `section` usa `p-6`, un padding pequeño y uniforme.
+- No se utiliza `py-*` grande (como `py-20`) que aumenta la altura total.
+- No hay `mt-*` o `mb-*` que empujen el contenido.
+- El alto final del contenido queda por debajo de `min-h-screen`,
+  por lo que el footer no es desplazado hacia abajo.
+
+En contraste, otras páginas que tenían `py-20` en el `<main>` agregaban
+160px extra de espacio vertical, lo cual empujaba al footer fuera
+del área visible y producía scroll aunque el contenido fuese mínimo.
+
+## 15. Solución definitiva al problema de **autofill** en inputs (Chrome)
+
+Los navegadores modernos —especialmente **Chrome**— aplican estilos automáticos cuando un input recibe **autocompletado** (`:-webkit-autofill`). Estos estilos tienen:
+
+- `background-color` forzado
+- `color` forzado
+- `box-shadow` interno que reemplaza el fondo real
+- **alta especificidad**, por lo que ignoran las clases Tailwind
+
+Esto generaba el problema en tu página de Login:
+
+> El input respetaba los estilos durante un instante, pero luego **el autofill los sobreescribía**.
+
+---
+
+## 🧩 **Causa exacta del problema**
+
+Chrome aplica un estilo interno:
+
+```css
+input:-webkit-autofill {
+  background-color: ... !important;
+  color: ... !important;
+  box-shadow: 0 0 0 1000px ... inset !important;
+}
+```
+
+Ese `box-shadow` con `!important` cubre cualquier color de fondo que vos definas con Tailwind o CSS variables.
+
+Por eso:
+
+- El input funcionaba OK unos segundos
+- Luego aparecía el color beige/blanco del sistema
+- Tailwind NO podía sobrescribirlo
+
+Y por eso también no importaba que usaras:
+`bg-(--color-base-clara)`
+`bg-white/0`
+o incluso `!bg-red-500`
+
+El autofill las destruía igual.
+
+---
+
+## ✅ **Solución implementada** (la definitiva)
+
+En `globals.css` definiste una regla que **elimina** el estilo automático _sin romper el autofill_.
+
+```css
+/* === Fix DEFINITIVO: evitar que autofill sobrescriba estilos === */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-contraste-1) !important;
+  transition: background-color 9999s ease-in-out 0s;
+  box-shadow: 0 0 0px 1000px var(--color-base-clara) inset !important;
+}
+```
+
+### ✔ ¿Qué hace cada línea?
+
+#### **1) `-webkit-text-fill-color`**
+
+Fuerza el color del texto del input cuando está autocompletado.
+
+#### **2) `transition: background-color 9999s`**
+
+Hack conocido para evitar que Chrome pinte el fondo por defecto.
+
+#### **3) `box-shadow: ... inset`**
+
+Reemplaza el fondo forzado del autofill por tu color real:
+
+- `var(--color-base-clara)`
+- O cualquier otro que quieras usar
+
+### Resultado final
+
+**El autofill sigue funcionando, pero NO rompe tu diseño.**
+
+---
+
+## 🧪 ¿Qué cambió en la arquitectura del proyecto?
+
+Antes necesitabas un componente `CustomInput` porque Tailwind no podía vencer el autofill.
+
+Después del fix global:
+
+- Los inputs vuelven a ser completamente controlables con clases Tailwind.
+- Ya no hay sobrescrituras inesperadas.
+- El componente `custom-input.tsx` se volvió **redundante**.
+
+Por eso se eliminó.
+
+---
+
+## 🧱 Estado final del sistema de inputs
+
+- Un **solo sistema de inputs**, usando `<input>` normal.
+- Estilos manejados con Tailwind + variables CSS.
+- Autofill completamente neutralizado.
+- Consistencia total entre Login, formularios y la página de pruebas.
+
+Esto simplifica mantenimiento, evita duplicación de componentes, y asegura coherencia visual en toda la app.
+
+---
+
+## 📌 Conclusión
+
+La causa principal no era Tailwind, ni Radix, ni el login:
+**Era el estilo de autofill que Chrome aplica con mayor prioridad.**
+
+Solucionado a nivel global, tu sistema de estilos vuelve a ser fiable y homogéneo.
