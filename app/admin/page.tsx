@@ -1,39 +1,97 @@
-import { ReactNode } from "react"
+// app/admin/page.tsx
 
+import Link from "next/link";
 
-
-export default function RoutinesPage() {
+export default function AdminPage() {
   return (
-    <div className="bg-baseMedia p-6 rounded-2xl shadow-md">
-      <h2 className="text-3xl font-bold mb-4 text-contraste1">
-        Bienvenido al Panel de Rutinas
-      </h2>
-      <p className="mb-6 text-contraste2">
-        Aquí podrás gestionar rutinas y entrenamientos personalizados.
-      </p>
+    <section className="space-y-10">
+      {/* Título */}
+      <header>
+        <h2 className="text-3xl font-bold text-contraste1">
+          Panel de Administración
+        </h2>
+        <p className="mt-2 text-contraste3">
+          Gestioná ejercicios, rutinas y usuarias desde un solo lugar.
+        </p>
+      </header>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="p-4 bg-white rounded-xl shadow hover:shadow-lg transition-shadow">
-          <h3 className="font-semibold text-lg mb-2">Usuarios</h3>
-          <p className="text-contraste3 text-sm">
-            Ver y administrar todos los usuarios registrados.
+      {/* Métricas */}
+      {/*
+        🔹 Estas métricas luego se obtendrán desde la base de datos (Supabase):
+        - cantidad de usuarias activas
+        - cantidad total de ejercicios
+        - cantidad de rutinas creadas
+      */}
+      <section className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="p-6 rounded-xl bg-baseClara shadow">
+          <p className="text-sm text-contraste4">Usuarias activas</p>
+          <p className="mt-2 text-3xl font-semibold text-contraste1">
+            128
           </p>
         </div>
 
-        <div className="p-4 bg-white rounded-xl shadow hover:shadow-lg transition-shadow">
-          <h3 className="font-semibold text-lg mb-2">Contenidos</h3>
-          <p className="text-contraste3 text-sm">
-            Crear, editar o eliminar rutinas y publicaciones.
+        <div className="p-6 rounded-xl bg-baseClara shadow">
+          <p className="text-sm text-contraste4">Ejercicios</p>
+          <p className="mt-2 text-3xl font-semibold text-contraste1">
+            56
           </p>
         </div>
 
-        <div className="p-4 bg-white rounded-xl shadow hover:shadow-lg transition-shadow">
-          <h3 className="font-semibold text-lg mb-2">Configuraciones</h3>
-          <p className="text-contraste3 text-sm">
-            Ajustes generales de la aplicación y parámetros del sistema.
+        <div className="p-6 rounded-xl bg-baseClara shadow">
+          <p className="text-sm text-contraste4">Rutinas</p>
+          <p className="mt-2 text-3xl font-semibold text-contraste1">
+            24
           </p>
         </div>
       </section>
-    </div>
-  )
+
+      {/* Acciones principales */}
+      <section>
+        <h3 className="text-xl font-semibold text-contraste1 mb-4">
+          Gestión principal
+        </h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Ejercicios */}
+          <Link
+            href="/admin/exercises"
+            className="block p-6 rounded-xl bg-baseClara shadow hover:shadow-lg transition-shadow"
+          >
+            <h4 className="text-lg font-semibold text-contraste1">
+              Ejercicios
+            </h4>
+            <p className="mt-2 text-sm text-contraste3">
+              Crear, editar y organizar ejercicios por zona del cuerpo.
+            </p>
+          </Link>
+
+          {/* Rutinas */}
+          <Link
+            href="/admin/routines"
+            className="block p-6 rounded-xl bg-baseClara shadow hover:shadow-lg transition-shadow"
+          >
+            <h4 className="text-lg font-semibold text-contraste1">
+              Rutinas
+            </h4>
+            <p className="mt-2 text-sm text-contraste3">
+              Armar rutinas combinando ejercicios y parámetros de entrenamiento.
+            </p>
+          </Link>
+
+          {/* Usuarias */}
+          <Link
+            href="/admin/users"
+            className="block p-6 rounded-xl bg-baseClara shadow hover:shadow-lg transition-shadow"
+          >
+            <h4 className="text-lg font-semibold text-contraste1">
+              Usuarias
+            </h4>
+            <p className="mt-2 text-sm text-contraste3">
+              Asignar rutinas y gestionar perfiles de usuarias.
+            </p>
+          </Link>
+        </div>
+      </section>
+    </section>
+  );
 }

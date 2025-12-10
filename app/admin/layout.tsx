@@ -1,4 +1,3 @@
-// app/admin/layout.tsx
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { ReactNode } from "react";
@@ -8,17 +7,14 @@ export default async function AdminLayout({
 }: {
   children: ReactNode;
 }) {
-  // 1️⃣ Cliente Supabase del lado del servidor
   const supabase = await createClient();
 
-  // 2️⃣ Usuario autenticado
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (!user) redirect("/login");
 
-  // 3️⃣ Perfil del usuario
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("role, first_name, last_name")
@@ -30,19 +26,17 @@ export default async function AdminLayout({
     redirect("/dashboard");
   }
 
-  // 4️⃣ Acceso restringido
   if (profile.role !== "admin") {
     redirect("/dashboard");
   }
 
-  // 5️⃣ Layout visual
   return (
     <div className="min-h-screen flex flex-col bg-baseMedia text-contraste1">
-      {/* Header */}
+      {/* Header Admin */}
       <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div className="px-8 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-8 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-xl font-semibold tracking-tight text-contraste1">
+            <h1 className="text-xl font-semibold tracking-tight">
               Panel de Administración
             </h1>
             <p className="text-sm text-contraste4">
@@ -55,20 +49,19 @@ export default async function AdminLayout({
               href="/dashboard"
               className="text-contraste3 hover:text-contraste1 transition-colors"
             >
-              Dashboard
+              Inicio
             </a>
-
             <a
               href="/admin"
               className="text-contraste1 border-b-2 border-contraste1 pb-1"
             >
-              Panel Admin
+              Admin
             </a>
           </nav>
         </div>
       </header>
 
-      {/* Main */}
+      {/* Contenido */}
       <main className="flex-1 container mx-auto px-8 py-10">
         {children}
       </main>
