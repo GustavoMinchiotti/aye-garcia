@@ -1,81 +1,86 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { useUserProfile } from '@/lib/hooks/useUserProfile'
-import type { UserProfile } from '@/types/user'
+import { useState, useEffect } from "react";
+import { useUserProfile } from "@/lib/hooks/useUserProfile";
+import type { UserProfile } from "@/types/user";
+import { normalizeName, normalizeText } from "@/lib/utils";
 
 export default function ProfileForm() {
-  const { profile, loading, error, updateProfile } = useUserProfile()
+  const { profile, loading, error, updateProfile } = useUserProfile();
 
-  // Estado tipado
   const [form, setForm] = useState<UserProfile>({
-    first_name: '',
-    last_name: '',
+    first_name: "",
+    last_name: "",
     age: null,
-    sex: '',
+    sex: "",
     is_pregnant: false,
     pregnancy_weeks: null,
-    goals: '',
-  })
+    goals: "",
+  });
 
-  // Actualiza el formulario cuando llega el perfil
+  // Carga inicial del perfil
   useEffect(() => {
     if (profile) {
       setForm({
-        first_name: profile.first_name ?? '',
-        last_name: profile.last_name ?? '',
+        first_name: profile.first_name ?? "",
+        last_name: profile.last_name ?? "",
         age: profile.age ?? null,
-        sex: profile.sex ?? '',
+        sex: profile.sex ?? "",
         is_pregnant: profile.is_pregnant ?? false,
         pregnancy_weeks: profile.pregnancy_weeks ?? null,
-        goals: profile.goals ?? '',
-      })
+        goals: profile.goals ?? "",
+      });
     }
-  }, [profile])
+  }, [profile]);
 
-  // Maneja cambios en los campos
+  // Manejo genérico de inputs
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
-    const target = e.target as HTMLInputElement
-    const { name, value, type, checked } = target
+    const { name, value, type, checked } = e.target as HTMLInputElement;
 
     setForm((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }))
-  }
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
 
-  // Envía los datos
+  // Guardado con normalización
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    // Validación básica
-    if (form.sex === 'femenino' && form.is_pregnant && !form.pregnancy_weeks) {
-      alert('Debe ingresar las semanas de embarazo')
-      return
+    // Validación mínima
+    if (form.sex === "femenino" && form.is_pregnant && !form.pregnancy_weeks) {
+      alert("Debe ingresar las semanas de embarazo");
+      return;
     }
 
     await updateProfile({
-      first_name: form.first_name,
-      last_name: form.last_name,
+      first_name: normalizeName(form.first_name),
+      last_name: normalizeName(form.last_name),
       age: form.age ? Number(form.age) : null,
       sex: form.sex,
       is_pregnant: form.is_pregnant,
       pregnancy_weeks: form.is_pregnant ? Number(form.pregnancy_weeks) : null,
-      goals: form.goals,
-    })
+      goals: normalizeText(form.goals),
+    });
 
-    alert('Perfil actualizado correctamente')
-  }
+    alert("Perfil actualizado correctamente");
+  };
 
-  if (loading) return <p>Cargando perfil...</p>
-  if (error) return <p className="text-red-500">Error: {error}</p>
-  if (!profile) return <p>No se encontró perfil</p>
+  if (loading)
+    return <p className="text-sm text-contraste3">Cargando perfil…</p>;
+  if (error) return <p className="text-red-600">Error: {error}</p>;
+  if (!profile) return <p>No se encontró perfil</p>;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow">
-      <h2 className="text-xl font-semibold">Editar Perfil</h2>
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-6 bg-(--color-base-clara) p-6 rounded-xl shadow"
+    >
+      <h2 className="text-xl font-semibold text-contraste1">Editar perfil</h2>
 
       <div>
         <label className="block text-sm font-medium">Nombre</label>
@@ -84,7 +89,8 @@ export default function ProfileForm() {
           name="first_name"
           value={form.first_name}
           onChange={handleChange}
-          className="w-full border rounded px-3 py-2"
+          className="w-full px-3 py-2 rounded border"
+          placeholder="Ej. Ayelen"
         />
       </div>
 
@@ -95,7 +101,8 @@ export default function ProfileForm() {
           name="last_name"
           value={form.last_name}
           onChange={handleChange}
-          className="w-full border rounded px-3 py-2"
+          className="w-full px-3 py-2 rounded border"
+          placeholder="Ej. García"
         />
       </div>
 
@@ -104,9 +111,9 @@ export default function ProfileForm() {
         <input
           type="number"
           name="age"
-          value={form.age ?? ''}
+          value={form.age ?? ""}
           onChange={handleChange}
-          className="w-full border rounded px-3 py-2"
+          className="w-full px-3 py-2 rounded border"
         />
       </div>
 
@@ -116,7 +123,7 @@ export default function ProfileForm() {
           name="sex"
           value={form.sex}
           onChange={handleChange}
-          className="w-full border rounded px-3 py-2"
+          className="w-full px-3 py-2 rounded border"
         >
           <option value="">Seleccione</option>
           <option value="masculino">Masculino</option>
@@ -124,9 +131,9 @@ export default function ProfileForm() {
         </select>
       </div>
 
-      {form.sex === 'femenino' && (
+      {form.sex === "femenino" && (
         <>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             <input
               type="checkbox"
               name="is_pregnant"
@@ -138,13 +145,15 @@ export default function ProfileForm() {
 
           {form.is_pregnant && (
             <div>
-              <label className="block text-sm font-medium">Semanas de embarazo</label>
+              <label className="block text-sm font-medium">
+                Semanas de embarazo
+              </label>
               <input
                 type="number"
                 name="pregnancy_weeks"
-                value={form.pregnancy_weeks ?? ''}
+                value={form.pregnancy_weeks ?? ""}
                 onChange={handleChange}
-                className="w-full border rounded px-3 py-2"
+                className="w-full px-3 py-2 rounded border"
               />
             </div>
           )}
@@ -157,17 +166,18 @@ export default function ProfileForm() {
           name="goals"
           value={form.goals}
           onChange={handleChange}
-          className="w-full border rounded px-3 py-2"
+          className="w-full px-3 py-2 rounded border"
           rows={3}
+          placeholder="Ej. Mejorar fuerza y movilidad"
         />
       </div>
 
       <button
         type="submit"
-        className="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700"
+        className="bg-(--color-acento-1) text-(--color-base-clara) px-5 py-2 rounded-lg font-semibold hover:bg-(--color-acento-2)"
       >
         Guardar cambios
       </button>
     </form>
-  )
+  );
 }
